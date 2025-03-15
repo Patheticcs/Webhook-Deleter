@@ -900,125 +900,199 @@ input:focus {
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
- .footer-icon {
-    width: 14px;
-    height: 14px;
-    margin-right: 0.5rem;
-    filter: brightness(0.8);
-  }
+.footer-icon {
+  width: 16px;
+  height: 16px;
+  margin: 0 0.5rem;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
 
-  .heart {
-    color: rgba(240, 60, 80, 0.8);
-    margin-right: 8px;
-    animation: pulse 2s infinite;
-  }
+.footer-icon:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
 
-  .github {
-    margin-left: 8px;
-  }
+.heart {
+  color: rgba(240, 80, 120, 0.9);
+  filter: drop-shadow(0 0 3px rgba(240, 80, 120, 0.5));
+}
 
-  .footer-icon:hover {
-    opacity: 1;
-    transform: scale(1.2);
-  }
+.github {
+  cursor: pointer;
+}
 
-  .pulse-ring {
-    position: absolute;
-    left: calc(50% - 60px);
-    top: 50%;
-    transform: translateY(-50%);
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    box-shadow: 0 0 0 rgba(240, 60, 80, 0.4);
-    animation: pulse-ring 2s infinite;
-  }
+.pulse-ring {
+  position: absolute;
+  left: 30px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid rgba(240, 80, 120, 0.5);
+  opacity: 0;
+  animation: pulse 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
 
-  @keyframes pulse-ring {
-    0% {
-      box-shadow: 0 0 0 0 rgba(240, 60, 80, 0.4);
-    }
-
-    70% {
-      box-shadow: 0 0 0 10px rgba(240, 60, 80, 0);
-    }
-
-    100% {
-      box-shadow: 0 0 0 0 rgba(240, 60, 80, 0);
-    }
-  }
-
-  @keyframes pulse {
-    0% {
-      transform: scale(0.95);
-    }
-
-    50% {
-      transform: scale(1.05);
-    }
-
-    100% {
-      transform: scale(0.95);
-    }
-  }
-
-  .slide-fade-enter-active {
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  }
-
-  .slide-fade-leave-active {
-    transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
-  }
-
-  .slide-fade-enter-from,
-  .slide-fade-leave-to {
-    transform: translateY(20px);
+@keyframes pulse {
+  0% {
+    transform: scale(0.5);
     opacity: 0;
   }
-
-  @media (max-width: 480px) {
-    .card-content {
-      padding: 1.75rem 1.25rem;
-    }
-
-    .title {
-      font-size: 1.5rem;
-    }
-
-    input,
-    .delete-btn {
-      padding: 0.8rem;
-      font-size: 0.9rem;
-    }
-
-    .alert {
-      padding: 0.8rem;
-      font-size: 0.85rem;
-    }
+  50% {
+    opacity: 0.4;
   }
-
-  @media (max-width: 350px) {
-    .card-content {
-      padding: 1.5rem 1rem;
-    }
-
-    .title {
-      font-size: 1.3rem;
-    }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
   }
+}
 
-  @media (hover: hover) {
-    .card:hover {
-      transform: perspective(1000px) scale(1.02);
-      box-shadow:
-        0 30px 60px var(--glass-shadow),
-        0 0 0 1px var(--glass-highlight) inset;
-    }
-  }
+.credits {
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
 
-  @media (hover: none) {
-    .card {
-      transform: none !important;
-    }
+.heart-text {
+  color: rgba(240, 80, 120, 0.9);
+  font-size: 0.9rem;
+  animation: heartBeat 1.5s ease infinite;
+}
+
+@keyframes heartBeat {
+  0%, 100% {
+    transform: scale(1);
   }
+  15% {
+    transform: scale(1.3);
+  }
+  30% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.2);
+  }
+}
+
+/* Transitions */
+.slide-fade-enter-active {
+  transition: all 0.3s ease;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.slide-fade-enter-from, .slide-fade-leave-to {
+  transform: translateY(10px);
+  opacity: 0;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .card {
+    border-radius: 1.25rem;
+  }
+  
+  .card-content {
+    padding: 1.5rem;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+  }
+  
+  .animated-underline {
+    margin-bottom: 1.5rem;
+  }
+  
+  .input {
+    padding: 0.9rem 0.9rem 0.9rem 2.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .card-content {
+    padding: 1.25rem;
+  }
+  
+  .title {
+    font-size: 1.35rem;
+  }
+  
+  .input {
+    padding: 0.8rem 0.8rem 0.8rem 2.3rem;
+    font-size: 0.85rem;
+  }
+  
+  .delete-btn {
+    height: 45px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --glass-bg: rgba(10, 10, 15, 0.5);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-highlight: rgba(255, 255, 255, 0.15);
+    --glass-shadow: rgba(0, 0, 0, 0.45);
+  }
+  
+  .webhook-deleter {
+    background: #050505;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animated-background {
+    background: #070707;
+  }
+  
+  .card {
+    backdrop-filter: none;
+  }
+  
+  .particle, .floating-orbs {
+    display: none;
+  }
+  
+  .pulse-ring {
+    display: none;
+  }
+}
+
+/* Focus visible styles for better keyboard navigation */
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+  .card {
+    border: 2px solid CanvasText;
+  }
+  
+  input, .delete-btn {
+    border: 1px solid CanvasText;
+  }
+  
+  .alert {
+    border: 1px solid CanvasText;
+  }
+}
 </style>
