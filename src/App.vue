@@ -78,10 +78,9 @@
         <div class="pulse-ring"></div>
         <HeartIcon class="footer-icon heart" />
         <span>Secure • Fast • Reliable</span>
-        <GithubIcon class="footer-icon github" @click="openGithub" />
+        <YoutubeIcon class="footer-icon youtube" @click="openYoutube" />
       </div>
     </div>
-    <div class="credits">Designed with <span class="heart-text">❤</span> by DevTeam</div>
   </div>
 </template>
 
@@ -99,7 +98,7 @@ import {
   AlertCircleIcon,
   XIcon,
   HeartIcon,
-  GithubIcon,
+  YoutubeIcon,
   LinkIcon
 } from 'lucide-vue-next'
 
@@ -110,7 +109,6 @@ const isDeleting = ref(false)
 const inputFocus = ref(false)
 const card = ref(null)
 
-// 3D Card Effect
 const handleMouseMove = (e) => {
   if (!card.value) return
   const cardRect = card.value.getBoundingClientRect()
@@ -118,13 +116,12 @@ const handleMouseMove = (e) => {
   const cardCenterY = cardRect.top + cardRect.height / 2
   const mouseX = e.clientX - cardCenterX
   const mouseY = e.clientY - cardCenterY
-  const maxRotate = 8 // Maximum rotation in degrees
+  const maxRotate = 8
   const rotateY = (mouseX / cardRect.width) * maxRotate
   const rotateX = -(mouseY / cardRect.height) * maxRotate
   
   card.value.style.transform = `perspective(1500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`
   
-  // Update shadow and glow effect
   const distance = Math.sqrt(mouseX * mouseX + mouseY * mouseY)
   const maxDistance = Math.sqrt((cardRect.width / 2) * (cardRect.width / 2) + (cardRect.height / 2) * (cardRect.height / 2))
   const intensity = 0.3 + (0.7 * distance / maxDistance)
@@ -143,7 +140,6 @@ const resetCardPosition = () => {
   }
 }
 
-// Initialize particles
 const initializeParticles = () => {
   const particles = document.querySelectorAll('.particle')
   particles.forEach(particle => {
@@ -172,7 +168,6 @@ onMounted(() => {
   window.addEventListener('resize', resetCardPosition)
   initializeParticles()
   
-  // Periodically respawn particles
   const particleInterval = setInterval(() => {
     const particles = document.querySelectorAll('.particle')
     particles.forEach(particle => {
@@ -182,7 +177,6 @@ onMounted(() => {
     })
   }, 10000)
   
-  // Clean up interval on unmount
   onUnmounted(() => {
     clearInterval(particleInterval)
   })
@@ -193,7 +187,6 @@ onUnmounted(() => {
   window.removeEventListener('resize', resetCardPosition)
 })
 
-// Delete webhook functionality
 const deleteWebhook = async () => {
   if (!webhookUrl.value) {
     status.value = 'error'
@@ -234,11 +227,10 @@ const resetStatus = () => {
   errorMessage.value = ''
 }
 
-const openGithub = () => {
-  window.open('https://github.com', '_blank')
+const openYoutube = () => {
+  window.open('https://www.youtube.com/@patheticpatheticpathetic', '_blank')
 }
 
-// Automatic reset of notifications after 5 seconds
 watchEffect(() => {
   if (status.value !== 'idle') {
     const timer = setTimeout(() => {
@@ -913,7 +905,7 @@ input:focus {
     animation: pulse 2s infinite;
   }
 
-  .github {
+  .youtube {
     margin-left: 8px;
   }
 
